@@ -116,24 +116,31 @@ This method is called by: overridden versions in Hero and Monster
 ---------------------------------------------------------*/
 	public void subtractHitPoints(int hitPoints)
 	{
-		if (hitPoints <0)
+		if (hitPoints < 0)
 			System.out.println("Hitpoint amount must be positive.");
-		else if (hitPoints >0)
+		else if (hitPoints > 0)
 		{
+			int damage = hitPoints;
 			this.hitPoints -= hitPoints;
+			displayHitPoints(damage);
+		}//end else if
+	}//end method
+	
+	public void displayHitPoints(int damage)
+	{
+		
+		if (this.hitPoints >0)
+		{
 			if (this.hitPoints < 0)
 				this.hitPoints = 0;
 			System.out.println(getName() + " hit " +
-								" for <" + hitPoints + "> points damage.");
+								" for <" + damage + "> points damage.");
 			System.out.println(getName() + " now has " +
-								getHitPoints() + " hit points remaining.");
+								this.hitPoints + " hit points remaining.");
 			System.out.println();
 		}
-
-		if (this.hitPoints == 0)
+		if (this.hitPoints <= 0)
 			System.out.println(name + " has been killed :-(");
-
-
 	}//end method
 
 /*-------------------------------------------------------
