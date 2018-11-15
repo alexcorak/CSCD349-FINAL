@@ -1,0 +1,6 @@
+Fetch to retrieve new work done
+Pull for getting stuff the first time
+Pushing steps
+git add .
+git commit -m "title"
+git push origin master
