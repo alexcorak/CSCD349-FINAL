@@ -5,6 +5,7 @@ import heroesAndMonsters.*;
 
 
 
+
 /*
   This class is the driver file for the Heroes and Monsters project.  It will
   do the following:
@@ -16,8 +17,59 @@ import heroesAndMonsters.*;
   Once a battle concludes, the user has the option of repeating the above
 
 */
+
+
 public class Dungeon
 {
+	
+int[] coordinates;
+	
+	Room[][] dungeon = new Room[5][5];
+	
+	public Dungeon()
+	{
+		for (int row = 0; row < dungeon.length; row++)
+		{
+			
+			for (int col = 0; col < dungeon.length; col++)
+			{
+				dungeon[row][col] = new Room(row, col, dungeon.length);
+			}
+		}
+	}
+	
+	
+	
+	public void printDungeon()
+	{
+		StringBuilder str = new StringBuilder();
+		
+		
+		for (int i = 0; i < dungeon.length; i++) //ROWS
+		{
+			StringBuilder one = new StringBuilder();
+			StringBuilder two = new StringBuilder();
+			StringBuilder three = new StringBuilder();
+				for (int j = 0; j < 5; j++) //COL
+				{			
+					one.append(dungeon[i][j].toString().substring(0, 6)); // 0,3
+					two.append(dungeon[i][j].toString().substring(6, 12)); //3,6
+					three.append(dungeon[i][j].toString().substring(12, 18)); //6,9
+										
+				}
+				str.append(one);
+				str.append(two);
+				str.append(three);						
+		}	
+		int length = str.length();
+		for (int k = 0; k < length; k++)
+		{			
+			if (k % 31 == 0) //16
+				str.insert(k, "\n");				
+		}		
+			System.out.print(str);
+	}
+	
     public static void main(String[] args)
 	{ 	
 		Hero theHero;
