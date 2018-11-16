@@ -46,7 +46,29 @@ public abstract class Hero extends DungeonCharacter
   }
 
 //------------------------------------------------------------------  
+  public void setLocation(int[] coords) 
+  {
+	  this.location = coords;
+  }
   
+  public int[] inventory()
+  {
+	  int[] array = new int[3];
+	  array[0] = this.healingPotion;
+	  array[1] = this.visionPotion;
+	  array[2] = this.pillarsFound;
+	  return array;
+  }
+  public String toString()
+  {
+	String s = this.getName() + " has "+this.getHitPoints()+" hitpoints remaining, ";
+	for(int x = 0;x<2;x++)
+	{
+		s += this.inventory()[x] + " ";
+	}
+	s+= "pillars";
+		return s;
+  }
   public double getChanceToBlock() {
 		return chanceToBlock;
 	}
