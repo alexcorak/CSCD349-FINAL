@@ -13,10 +13,13 @@ package heroesAndMonsters;
 public class Gremlin extends Monster
 {
 	private String phrase;
+	private double dropChance;
+	
     public Gremlin()
 	{
 		super("Gnarltooth the Gremlin", 70, 5, .8, .4, 15, 30, 20, 40);
 		this.phrase = " jabs his kris at ";
+		this.dropChance = .3;
     }//end constructor
 
 
@@ -24,6 +27,11 @@ public class Gremlin extends Monster
 	{
 		return this.phrase;
 	}
+    
+    public double getDropChance()
+    {
+    	return dropChance;
+    }
 
 	
 

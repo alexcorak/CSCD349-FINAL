@@ -33,6 +33,10 @@ public abstract class Hero extends DungeonCharacter
 {
 	private double chanceToBlock;
 	private int numTurns;
+	private int healingPotion;
+	private int visionPotion;
+	private int pillarsFound;
+	private int[] location;
 
 //-----------------------------------------------------------------
 //calls base constructor and gets name of hero from user
@@ -42,6 +46,9 @@ public abstract class Hero extends DungeonCharacter
   {
 	super(name, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax);
 	this.chanceToBlock = chanceToBlock;
+	this.healingPotion = 0;
+	this.visionPotion  = 0;
+	this.pillarsFound = 0;
 	readName();
   }
 
@@ -50,6 +57,29 @@ public abstract class Hero extends DungeonCharacter
   public double getChanceToBlock() {
 		return chanceToBlock;
 	}
+  public void setLocation(int[] coords) 
+  {
+	  this.location = coords;
+  }
+  
+  public int[] inventory()
+  {
+	  int[] array = new int[3];
+	  array[0] = this.healingPotion;
+	  array[1] = this.visionPotion;
+	  array[2] = this.pillarsFound;
+	  return array;
+  }
+  public String toString()
+  {
+	String s = this.getName() + " has "+this.getHitPoints()+" hitpoints remaining, ";
+	for(int x = 0;x<2;x++)
+	{
+		s += this.inventory()[x] + " ";
+	}
+	s+= "pillars";
+		return s;
+  }
 
 	public void setChanceToBlock(double chanceToBlock) {
 		this.chanceToBlock = chanceToBlock;
@@ -144,6 +174,8 @@ This method is called by: external sources
 
 	//public abstract void battleChoices(DungeonCharacter opponent);
 
+
+	
 }//end Hero class
 
 

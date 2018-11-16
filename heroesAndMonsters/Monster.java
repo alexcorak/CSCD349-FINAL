@@ -29,6 +29,8 @@ public abstract class Monster extends DungeonCharacter
 
   }
 
+
+
 //-----------------------------------------------------------------
   public void heal()
   {
@@ -56,6 +58,14 @@ public abstract class Monster extends DungeonCharacter
 		heal();
 
  }//end method
+ 
+ public boolean loot()
+ {
+ 	if(Math.random() <= this.getDropChance())
+ 		return true;
+ 	else
+ 		return false;
+ }
  
  public void attack(DungeonCharacter opponent)
  {
