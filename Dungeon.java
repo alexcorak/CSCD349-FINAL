@@ -169,8 +169,14 @@ user has the option of quitting.
 
 		}
 
-		if (!theMonster.isAlive())
+		if (!theMonster.isAlive()) {
 		    System.out.println(theHero.getName() + " was victorious!");
+		    if(theMonster.loot(theMonster))//make them all the same drop rate and delete the param?
+		    {
+		    	System.out.println("You found a potion!");
+		    	theHero.addHealingPotion();
+		    }
+		}
 		else if (!theHero.isAlive())
 			System.out.println(theHero.getName() + " was defeated :-(");
 		else

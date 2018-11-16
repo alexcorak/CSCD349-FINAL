@@ -53,29 +53,7 @@ public abstract class Hero extends DungeonCharacter
   }
 
 //------------------------------------------------------------------  
-  public void setLocation(int[] coords) 
-  {
-	  this.location = coords;
-  }
-  
-  public int[] inventory()
-  {
-	  int[] array = new int[3];
-	  array[0] = this.healingPotion;
-	  array[1] = this.visionPotion;
-	  array[2] = this.pillarsFound;
-	  return array;
-  }
-  public String toString()
-  {
-	String s = this.getName() + " has "+this.getHitPoints()+" hitpoints remaining, ";
-	for(int x = 0;x<2;x++)
-	{
-		s += this.inventory()[x] + " ";
-	}
-	s+= "pillars";
-		return s;
-  }
+
   public double getChanceToBlock() {
 		return chanceToBlock;
 	}
@@ -83,7 +61,10 @@ public abstract class Hero extends DungeonCharacter
   {
 	  this.location = coords;
   }
-  
+  public void loot(Room a)
+  {
+	  
+  }
   public int[] inventory()
   {
 	  int[] array = new int[3];
@@ -92,8 +73,25 @@ public abstract class Hero extends DungeonCharacter
 	  array[2] = this.pillarsFound;
 	  return array;
   }
-  public String toString()
+	public String getInventory() 
+	{
+		String s = new String();
+		for(int x = 0;x<2;x++)
+		{
+			s += this.inventory()[x] + " ";
+		}
+		return s;
+	}
+  public void addHealingPotion()
   {
+	  this.healingPotion++;
+  }
+  public void addVisionPotion()
+  {
+	  this.visionPotion++;
+  }
+public String toString()
+{
 	String s = this.getName() + " has "+this.getHitPoints()+" hitpoints remaining, ";
 	for(int x = 0;x<2;x++)
 	{
@@ -101,7 +99,7 @@ public abstract class Hero extends DungeonCharacter
 	}
 	s+= "pillars";
 		return s;
-  }
+ }
 
 	public void setChanceToBlock(double chanceToBlock) {
 		this.chanceToBlock = chanceToBlock;
@@ -193,6 +191,8 @@ This method is called by: external sources
 		System.out.println("Number of turns this round is: " + numTurns);
 
 	}//end battleChoices
+
+
 
 	//public abstract void battleChoices(DungeonCharacter opponent);
 
