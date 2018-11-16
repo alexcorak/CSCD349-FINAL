@@ -33,6 +33,10 @@ public abstract class Hero extends DungeonCharacter
 {
 	private double chanceToBlock;
 	private int numTurns;
+	private int healingPotion;
+	private int visionPotion;
+	private int pillarsFound;
+	private int[] location;
 
 //-----------------------------------------------------------------
 //calls base constructor and gets name of hero from user
