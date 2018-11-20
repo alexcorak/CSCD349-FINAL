@@ -11,6 +11,10 @@ public class MonsterFactory
 			monster = new Gremlin();
 		else if (number == 3)
 			monster = new Skeleton();
+		else if (number == 4)
+			monster = new Lich();
+		else if (number == 5)
+			monster = new Dragon();
 		else {
 			System.out.println("Invalid choice, returning skeleton");
 			monster = new Skeleton();

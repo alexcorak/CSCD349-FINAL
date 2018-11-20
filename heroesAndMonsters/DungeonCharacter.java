@@ -65,7 +65,19 @@ public abstract class DungeonCharacter
 	{
 		return name;
 	}//end getName
-
+	public void setDamage(int bonus)
+	{
+		this.damageMax+=bonus;
+		this.damageMin+=bonus;
+	}
+	public void setAttackSpeed(int bonus)
+	{
+		this.attackSpeed+=bonus;
+	}
+	public void setHitChance(double bonus)
+	{
+		this.chanceToHit += bonus;
+	}
 	public void setName(String name)
 	{
 		this.name = name;

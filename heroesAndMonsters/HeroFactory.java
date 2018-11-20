@@ -12,6 +12,10 @@ public class HeroFactory
 			hero = new Sorceress();
 		else if (heroType == 3)
 			hero = new Thief();
+		else if (heroType == 4)
+			hero = new Archer();
+		else if (heroType == 5)
+			return new Berserker();
 		else
 		{
 			System.out.println("Invalid choice, returning a Thief");

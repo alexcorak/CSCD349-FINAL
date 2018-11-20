@@ -61,9 +61,10 @@ public abstract class Hero extends DungeonCharacter
   {
 	  this.location = coords;
   }
-  public void loot(Room a)
+  public String toString()
   {
-	  
+	  return "Name :"+ this.getName()+ " HP Remaining: "+ this.getHitPoints() + " Healing potions: "+ this.healingPotion
+			  + " Vision Potions: " + this.visionPotion + " Pillars found: " + this.pillarsFound;
   }
   public int[] inventory()
   {
@@ -73,15 +74,7 @@ public abstract class Hero extends DungeonCharacter
 	  array[2] = this.pillarsFound;
 	  return array;
   }
-	public String getInventory() 
-	{
-		String s = new String();
-		for(int x = 0;x<2;x++)
-		{
-			s += this.inventory()[x] + " ";
-		}
-		return s;
-	}
+
   public void addHealingPotion()
   {
 	  this.healingPotion++;
@@ -90,26 +83,15 @@ public abstract class Hero extends DungeonCharacter
   {
 	  this.visionPotion++;
   }
-public String toString()
-{
-	String s = this.getName() + " has "+this.getHitPoints()+" hitpoints remaining, ";
-	for(int x = 0;x<2;x++)
-	{
-		s += this.inventory()[x] + " ";
-	}
-	s+= "pillars";
-		return s;
- }
-
-	public void setChanceToBlock(double chanceToBlock) {
+  public void setChanceToBlock(double chanceToBlock) {
 		this.chanceToBlock = chanceToBlock;
 	}
 
-	public int getNumTurns() {
+  public int getNumTurns() {
 		return numTurns;
 	}
 
-	public void setNumTurns(int numTurns) {
+  public void setNumTurns(int numTurns) {
 		this.numTurns = numTurns;
 	}
 /*-------------------------------------------------------

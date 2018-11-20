@@ -100,7 +100,9 @@ this task
 		System.out.println("Choose a hero by number:\n" +
 					       "1. Warrior\n" +
 						   "2. Sorceress\n" +
-						   "3. Thief");
+						   "3. Thief\n"+
+						   "4. Archer\n"+
+						   "5. Berserker\n");
 		choice = input.nextInt();
 		
 		return factory.createHero(choice);
@@ -116,11 +118,18 @@ a polymorphic reference (Monster) to accomplish this task.
 	public static Monster generateMonster()
 	{
 		int choice;
+		boolean buffer = false;
 		MonsterFactory factory = new MonsterFactory();
 		choice = (int)(Math.random() * 3) + 1;
-
+		if(choice == 5 && buffer == false)
+		{
+			if(Math.random() <=.5) 
+			{
+				choice = (int)(Math.random() * 3) + 1;
+				buffer = true;
+			}
+		}
 		return factory.createMonster(choice);
-				
 	}
 
 /*-------------------------------------------------------------------
