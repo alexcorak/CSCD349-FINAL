@@ -151,8 +151,9 @@ This method is called by: overridden versions in Hero and Monster
 								this.hitPoints + " hit points remaining.");
 			System.out.println();
 		}
-		if (this.hitPoints <= 0)
+		if (this.hitPoints <= 0) {
 			System.out.println(name + " has been killed :-(");
+		}
 	}//end method
 
 /*-------------------------------------------------------

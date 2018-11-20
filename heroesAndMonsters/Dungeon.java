@@ -197,7 +197,7 @@ public class Dungeon
 		    if(theMonster.loot(theMonster))//make them all the same drop rate and delete the param?
 		    {
 		    	System.out.println("You found a potion!");
-		    	theHero.addHealingPotion();
+		    	//add a potion to the inventory
 		    }
 		}
 		else if (!theHero.isAlive()) {

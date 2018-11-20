@@ -34,9 +34,6 @@ public abstract class Hero extends DungeonCharacter
 {
 	private double chanceToBlock;
 	private int numTurns;
-	private int healingPotion;
-	private int visionPotion;
-	private int pillarsFound;
 	private int[] location;
 	private ArrayList<Integer> pillars;
 	private ArrayList<Character> lootList;
@@ -50,9 +47,6 @@ public abstract class Hero extends DungeonCharacter
   {
 	super(name, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax);
 	this.chanceToBlock = chanceToBlock;
-	this.healingPotion = 0;
-	this.visionPotion  = 0;
-	this.pillarsFound = 0;
 	readName();
 	
 	
@@ -89,6 +83,12 @@ public abstract class Hero extends DungeonCharacter
 	public void subtractHP(int value)
 	{
 		super.subtractHitPoints(value);
+		
+		if(this.isAlive()==false)
+		{
+			System.out.println("You collected "+ this.pillars.size()+ " of 4 total. Thanks for playing!");
+			System.exit(0);
+		}
 	}
   
   
@@ -98,21 +98,6 @@ public abstract class Hero extends DungeonCharacter
   public void setLocation(int[] coords) 
   {
 	  this.location = coords;
-  }
-  public String toString()
-  {
-	  return "Name :"+ this.getName()+ " HP Remaining: "+ this.getHitPoints() + " Healing potions: "+ this.healingPotion
-			  + " Vision Potions: " + this.visionPotion + " Pillars found: " + this.pillarsFound;
-  }
- 
-
-  public void addHealingPotion()
-  {
-	  this.healingPotion++;
-  }
-  public void addVisionPotion()
-  {
-	  this.visionPotion++;
   }
   public void setChanceToBlock(double chanceToBlock) {
 		this.chanceToBlock = chanceToBlock;

@@ -4,3 +4,11 @@ Pushing steps
 git add .
 git commit -m "title"
 git push origin master
+
+Things to do:
+
+Inventory and menu inventory access
+memento saving
+adding loot to inventory
+attack strategy pattern
+vision potion
