@@ -62,8 +62,6 @@ public abstract class Monster extends DungeonCharacter
  public boolean loot(Monster enemy)
  {
 	Double random = Math.random();
-	String s = random.toString();
-	random = Double.parseDouble(s.substring(0, 2));
  	if(random <= enemy.getDropChance())
  		return true;
  	else

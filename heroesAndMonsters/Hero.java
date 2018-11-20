@@ -1,4 +1,5 @@
 package heroesAndMonsters;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -37,6 +38,9 @@ public abstract class Hero extends DungeonCharacter
 	private int visionPotion;
 	private int pillarsFound;
 	private int[] location;
+	private ArrayList<Integer> pillars;
+	private ArrayList<Character> lootList;
+	//private int hitPoints;
 
 //-----------------------------------------------------------------
 //calls base constructor and gets name of hero from user
@@ -50,10 +54,44 @@ public abstract class Hero extends DungeonCharacter
 	this.visionPotion  = 0;
 	this.pillarsFound = 0;
 	readName();
+	
+	
+	pillars = new ArrayList<>();
+	lootList = new ArrayList<>();
+	this.location = new int[2];
+	location[0] = 0;
+	location[1] = 0;
   }
 
 //------------------------------------------------------------------  
 
+	public int pillarsFound()
+	{
+		return pillars.size();
+	}
+	
+	public void addPillar()
+	{
+		pillars.add(1);
+	}
+	
+	public int[] getLocation()
+	{
+		return this.location;
+	}
+	
+	public void setLocation(int x, int y)
+	{
+		this.location[0] += x;
+		this.location[1] += y;
+	}
+	
+	public void subtractHP(int value)
+	{
+		super.subtractHitPoints(value);
+	}
+  
+  
   public double getChanceToBlock() {
 		return chanceToBlock;
 	}
@@ -66,14 +104,7 @@ public abstract class Hero extends DungeonCharacter
 	  return "Name :"+ this.getName()+ " HP Remaining: "+ this.getHitPoints() + " Healing potions: "+ this.healingPotion
 			  + " Vision Potions: " + this.visionPotion + " Pillars found: " + this.pillarsFound;
   }
-  public int[] inventory()
-  {
-	  int[] array = new int[3];
-	  array[0] = this.healingPotion;
-	  array[1] = this.visionPotion;
-	  array[2] = this.pillarsFound;
-	  return array;
-  }
+ 
 
   public void addHealingPotion()
   {

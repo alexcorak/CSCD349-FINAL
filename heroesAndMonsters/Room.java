@@ -1,6 +1,7 @@
 package heroesAndMonsters;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Room
 {
@@ -9,20 +10,33 @@ public class Room
 	private boolean south = true;
 	private boolean east = true;
 	private boolean west = true;
-	ArrayList<Character> itemList;
+	private ArrayList<Character> itemList;
+	private char[] contents;
+	private char[] contents2;
+	private boolean visited;
 	
 	
-	public Room(int row, int col, int lengthOfDungeon)
+	
+	public Room(int row, int col, int lengthOfDungeon, char content)
 	{
-		itemList = new ArrayList<>();
-		
-		
+		visited = false;
+		contents = new char[2];
+		contents2 = new char[2];
 		room = new char[18];
+		itemList = new ArrayList<Character>();
+		itemList.add('P'); //Pit
+		itemList.add('V'); //Vision
+		itemList.add('H'); //Healing
+		itemList.add('X'); //Monster
+		itemList.add('M'); //Multiple Items
+		
+				
+		
 		room[0] = '*';
 		room[4] = '*';		
 		room[12] = '*';		
 		room[16] = '*';
-		room[8] = roomContents();
+		
 		
 		if (row == 0) {			 
 			this.north = false;
@@ -45,6 +59,11 @@ public class Room
 			
 		}
 		
+		if (content == ' ') {
+			room[8] = roomContents();
+		}
+		
+		
 		room[1] = ' ';
 		room[3] = ' ';
 		room[5] = ' ';
@@ -64,12 +83,94 @@ public class Room
 			room[6] = '|';
 		if (east)
 			room[10] = '|';
+		
+		this.contents2[0] = room[8];
+		this.contents2[1] = ' ';
 					
 	}
 	
-	private char roomContents()
+	
+	
+	public char roomContents()
 	{
-		return ' ';
+		double random = Math.random();
+		
+		if (random <= .2) // 20% chance the room isnt empty
+		{
+			Random rand = new Random();
+			int randomItem = rand.nextInt(itemList.size());
+			return itemList.get(randomItem);
+		}
+		else
+		{
+			return ' ';
+		}				
+	}
+	
+	public char getContents()
+	{
+		return this.contents2[0];
+	}
+	
+	public void setContents(String s)
+	{
+		
+			room[8] = s.charAt(0);
+		
+		
+		this.contents2[0] = room[8];
+		this.contents2[1] = ' ';
+		
+	}
+	
+	public char youAreHere()
+	{
+			
+		
+		room[8] = '@';
+	
+		
+		this.visited = true;
+		return this.contents2[0];
+	}
+	
+	
+	public void resetRoom(char c)
+	{
+		if (c == 'P' || c == 'I' || c == 'O')
+		{
+			room[8] = c;
+			this.contents2[0] = c;
+		}
+		
+		else
+		{
+			room[8] = '#';
+			this.contents2[0] = '#';
+		}
+		
+		
+		
+		
+	}
+	
+	public boolean hasVisted()
+	{
+		return this.visited;
+	}
+	
+	public void hideContent()
+	{
+		/*if (visited)
+		{
+			room[8] = this.contents[0];
+		}*/
+		room[8] = this.contents2[1];
+		
+	}
+	public void showContent()
+	{
+		room[8] = this.contents2[0];
 	}
 	
 	public String toString()
@@ -77,52 +178,17 @@ public class Room
 		String str = new String(room);
 		return str;
 	}
-	
-	public String roomOnly()
+	/*public void printRoom()
 	{
-		return null;
-	}
-	
-	/*public room(int row, int col, int lengthOfDungeon)
-	{
-		room = new char[11];
-		room[0] = '*';
-		room[2] = '*';		
-		room[6] = '*';		
-		room[8] = '*';
-		room[4] = 'C';
-		
-		if (row == 0) {			 
-			this.north = false;
-			room[1] = '*';
-			
+		/*String str = new String(room);
+		StringBuilder s = new StringBuilder(str);
+		for (int i = 0; i < str.length(); i++)
+		{
+			if (i % 7 == 0)
+				s.insert(i, "\n");
 		}
-		if (row == lengthOfDungeon - 1) {
-			this.south = false;
-			room[7] = '*';
-		}
-		
-		if (col == 0) {
-			this.west = false;
-			room[3] = '*';
-			
-		}
-		if (col == lengthOfDungeon - 1) {
-			this.east = false;
-			room[5] = '*';
-			
-		}
-		
-		
-		if (north)
-			room[1] = '-';
-		if (south)
-			room[7] = '-';
-		if (west)
-			room[3] = '|';
-		if (east)
-			room[5] = '|';
-					
+		//System.out.println(s + " Room contains: " + this.contents);
+		System.out.print("Your room contains: " + this.contents[0]);
 	}*/
 	
 	
