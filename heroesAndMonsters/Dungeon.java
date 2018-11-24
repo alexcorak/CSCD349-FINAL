@@ -31,10 +31,10 @@ public class Dungeon
 		return player;
 	}
 	
-	/*public void printRoom()
+	public void printRoom()
 	{
 		dungeon[player.getLocation()[0]][player.getLocation()[1]].printRoom();
-	}*/
+	}
 	
 	public StringBuilder toStringDungeon()
 	{
@@ -75,7 +75,7 @@ public class Dungeon
 					
 					if ((i != player.getLocation()[0]) || (j != player.getLocation()[1]))
 					{
-						if (dungeon[i][j].hasVisted())
+						if (dungeon[i][j].hasVisted() || dungeon[i][j].hasVision())
 						{
 							dungeon[i][j].showContent();
 						}
@@ -85,9 +85,7 @@ public class Dungeon
 						}
 						
 					}
-					
-					
-					
+										
 					one.append(dungeon[i][j].toString().substring(0, 6)); // 0,3
 					two.append(dungeon[i][j].toString().substring(6, 12)); //3,6
 					three.append(dungeon[i][j].toString().substring(12, 18)); //6,9
@@ -96,10 +94,32 @@ public class Dungeon
 				str.append(one);
 				str.append(two);
 				str.append(three);						
-		}
-		
-		
+		}		
 		return str;
+	}
+	
+	public void vision()
+	{
+		if (currentRoom[1] < 4)
+			dungeon[currentRoom[0]][currentRoom[1] + 1].setVision(true);
+		if (currentRoom[1] > 0)
+			dungeon[currentRoom[0]][currentRoom[1] - 1].setVision(true);
+		if (currentRoom[0] < 4)
+			dungeon[currentRoom[0] + 1][currentRoom[1]].setVision(true);
+		if (currentRoom[0] > 0)
+			dungeon[currentRoom[0] - 1][currentRoom[1]].setVision(true);
+	}
+	
+	public void resetVision()
+	{
+		if (currentRoom[1] < 4)
+			dungeon[currentRoom[0]][currentRoom[1] + 1].resetVision();
+		if (currentRoom[1] > 0)
+			dungeon[currentRoom[0]][currentRoom[1] - 1].resetVision();
+		if (currentRoom[0] < 4)
+			dungeon[currentRoom[0] + 1][currentRoom[1]].resetVision();
+		if (currentRoom[0] > 0)
+			dungeon[currentRoom[0] - 1][currentRoom[1]].resetVision();
 	}
 	
 	public void setEntranceExit()
@@ -201,6 +221,7 @@ public class Dungeon
 			}
 		}
 	}
+	
 	
 	public static void battle(Hero theHero, Monster theMonster)
 	{

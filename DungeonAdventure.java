@@ -1,24 +1,6 @@
 import java.util.Scanner;
 import heroesAndMonsters.*;
 
-
-
-
-
-
-/*
-  This class is the driver file for the Heroes and Monsters project.  It will
-  do the following:
-
-  1.  Allow the user to choose a hero
-  2.  Randomly select a monster
-  3.  Allow the hero to battle the monster
-
-  Once a battle concludes, the user has the option of repeating the above
-
-*/
-
-
 public class DungeonAdventure
 {
 	
@@ -29,6 +11,7 @@ public class DungeonAdventure
 		
 		StringBuilder map = saveDungeon(dun);
 		String s = map.toString();
+		boolean useVision = false;
 		
 		
 		System.out.println("Welcome to the dungeon!\n");
@@ -43,22 +26,37 @@ public class DungeonAdventure
 			
 			if (menuOption == 1) {
 				
-				while (option != 5) {
-					printDungeon(dun);
+				while (option != 5)
+				{
+					dun.printRoom();
+					if (useVision)
+					{
+						dun.vision();
+						printDungeon(dun);
+						dun.resetVision();
+					}
+					else						
+						printDungeon(dun);
+					
 					dun.lootRoom();
 					dun.resetRoom();
 					System.out.println("\nPillars found: " + player.pillarsFound());
-					if ((dun.atExit() == true) && (player.pillarsFound() == 4)) {
+					
+					if ((dun.atExit() == true) && (player.pillarsFound() == 4))
+					{
 						System.out.println("Congrats, you've won!");
 						System.exit(0);
 					}
+					useVision = false;
 					option = moveHero(dun);
+					
 				}
 				
 			}
 			else if(menuOption == 2) {
 				player.showLoot();
-				player.accessLoot();
+				useVision = player.accessLoot();
+				
 			}
 				
 			else if (menuOption == 3)
@@ -71,12 +69,7 @@ public class DungeonAdventure
 			else	
 				break;
 			
-			
-			//dun.printRoom();
-			
-			
-				
-			
+																
 					
 		}
 		
@@ -181,26 +174,6 @@ public class DungeonAdventure
 		
 	}
 	
-   /* public static void main(String[] args)
-	{ 	
-		Hero theHero;
-		Monster theMonster;
-
-		do
-		{
-		    theHero = chooseHero();
-		    theMonster = generateMonster();
-			battle(theHero, theMonster);
-
-		} while (playAgain());
-
-    }*/
-
-/*-------------------------------------------------------------------
-chooseHero allows the user to select a hero, creates that hero, and
-returns it.  It utilizes a polymorphic reference (Hero) to accomplish
-this task
----------------------------------------------------------------------*/
     
 	public static Hero chooseHero()
 	{
@@ -220,91 +193,5 @@ this task
 					
 		
 	}
-
-/*-------------------------------------------------------------------
-generateMonster randomly selects a Monster and returns it.  It utilizes
-a polymorphic reference (Monster) to accomplish this task.
----------------------------------------------------------------------*/
-	
-	/*public static Monster generateMonster()
-	{
-		int choice;
-		boolean buffer = false;
-		MonsterFactory factory = new MonsterFactory();
-		choice = (int)(Math.random() * 3) + 1;
-		if(choice == 5 && buffer == false)
-		{
-			if(Math.random() <=.5) 
-			{
-				choice = (int)(Math.random() * 3) + 1;
-				buffer = true;
-			}
-		}
-		return factory.createMonster(choice);
-	}*/
-
-/*-------------------------------------------------------------------
-playAgain allows gets choice from user to play another game.  It returns
-true if the user chooses to continue, false otherwise.
----------------------------------------------------------------------*/
-	
-	public static boolean playAgain()
-	{
-		Scanner input = new Scanner(System.in);		
-		char again;
-
-		System.out.println("Play again (y/n)?");		
-		again = input.next().charAt(0);
-		
-		
-		return (again == 'Y' || again == 'y');
-	}
-
-
-/*-------------------------------------------------------------------
-battle is the actual combat portion of the game.  It requires a Hero
-and a Monster to be passed in.  Battle occurs in rounds.  The Hero
-goes first, then the Monster.  At the conclusion of each round, the
-user has the option of quitting.
----------------------------------------------------------------------*/
-	
-//	public static void battle(Hero theHero, Monster theMonster)
-//	{
-//		Scanner input = new Scanner(System.in);
-//		char quit = 'p';
-//		
-//		System.out.println(theHero.getName() + " battles " +
-//							theMonster.getName());
-//		System.out.println("---------------------------------------------");
-//		
-//		while (theHero.isAlive() && theMonster.isAlive() && quit != 'q')
-//		{
-//			theHero.battleChoices(theMonster);
-//			
-//			if (theMonster.isAlive())
-//			    theMonster.attack(theHero);
-//			
-//			System.out.print("\n-->q to quit, anything else to continue: ");
-//			quit = input.nextLine().charAt(0);
-//
-//		}
-//
-//		if (!theMonster.isAlive()) {
-//		    System.out.println(theHero.getName() + " was victorious!");
-//		    if(theMonster.loot(theMonster))//make them all the same drop rate and delete the param?
-//		    {
-//		    	System.out.println("You found a potion!");
-//		    	theHero.addHealingPotion();
-//		    }
-//		}
-//		else if (!theHero.isAlive())
-//			System.out.println(theHero.getName() + " was defeated :-(");
-//		else
-//			System.out.println("Quitters never win ;-)");
-//		
-//		
-//
-//	}
-
 
 }//end Dungeon class

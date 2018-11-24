@@ -11,16 +11,16 @@ public class Room
 	private boolean east = true;
 	private boolean west = true;
 	private ArrayList<Character> itemList;
-	private char[] contents;
 	private char[] contents2;
 	private boolean visited;
+	private boolean vision;
 	
 	
 	
 	public Room(int row, int col, int lengthOfDungeon, char content)
 	{
+		vision = false;
 		visited = false;
-		contents = new char[2];
 		contents2 = new char[2];
 		room = new char[18];
 		itemList = new ArrayList<Character>();
@@ -154,19 +154,28 @@ public class Room
 		
 	}
 	
+	public void setVision(boolean yesNo)
+	{
+		this.vision = true;
+	}
+	
+	public void resetVision()
+	{
+		this.vision = false;
+	}
+	public boolean hasVision()
+	{
+		return this.vision;
+	}
+	
 	public boolean hasVisted()
 	{
 		return this.visited;
 	}
 	
 	public void hideContent()
-	{
-		/*if (visited)
-		{
-			room[8] = this.contents[0];
-		}*/
-		room[8] = this.contents2[1];
-		
+	{		
+		room[8] = this.contents2[1];		
 	}
 	public void showContent()
 	{
@@ -178,18 +187,11 @@ public class Room
 		String str = new String(room);
 		return str;
 	}
-	/*public void printRoom()
+	
+	public void printRoom()
 	{
-		/*String str = new String(room);
-		StringBuilder s = new StringBuilder(str);
-		for (int i = 0; i < str.length(); i++)
-		{
-			if (i % 7 == 0)
-				s.insert(i, "\n");
-		}
-		//System.out.println(s + " Room contains: " + this.contents);
-		System.out.print("Your room contains: " + this.contents[0]);
-	}*/
+		System.out.print("Your room contains: " + this.contents2[0]);
+	}
 	
 	
 }

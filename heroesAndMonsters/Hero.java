@@ -83,7 +83,7 @@ public abstract class Hero extends DungeonCharacter
 		}
 	}
 	
-	public void accessLoot()
+	public boolean accessLoot()
 	{
 		Scanner sc = new Scanner(System.in);
 		int choice = 0;
@@ -108,6 +108,8 @@ public abstract class Hero extends DungeonCharacter
 						lootList.put('V', lootList.get('V') - 1);
 						if (lootList.get('V') == 0)
 							lootList.remove('V');
+						
+						return true;
 					}
 				}
 				break;
@@ -122,6 +124,8 @@ public abstract class Hero extends DungeonCharacter
 						lootList.put('H', lootList.get('H') - 1);
 						if (lootList.get('H') == 0)
 							lootList.remove('H');
+						
+						return false;
 					}
 				}
 				break;
@@ -132,6 +136,8 @@ public abstract class Hero extends DungeonCharacter
 			
 			}while (choice < 1 || choice > 3);
 		}
+		
+		return false;
 		
 	}
 	
