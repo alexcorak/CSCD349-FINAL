@@ -1,5 +1,6 @@
 package heroesAndMonsters;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Dungeon 
@@ -169,6 +170,36 @@ public class Dungeon
 			
 		}
 		
+		if (dungeon[player.getLocation()[0]][player.getLocation()[1]].getContents() == 'H')
+		{
+			System.out.println("\nCongrats! You've found a health potion!");
+			player.addLoot('H');
+		}
+		
+		if (dungeon[player.getLocation()[0]][player.getLocation()[1]].getContents() == 'V')
+		{
+			System.out.println("\nCongrats! You've found a vision potion!");
+			player.addLoot('V');
+		}
+		
+		if (dungeon[player.getLocation()[0]][player.getLocation()[1]].getContents() == 'M')
+		{
+			System.out.println("\nCongrats! You've found the multiple item room!");
+			Random rand = new Random();
+			int num = rand.nextInt(2) + 2; // Between 2 and 3 items
+			for (int i = 0; i < num; i++)
+			{
+				int chance = rand.nextInt(2);
+				if (chance == 0){
+					System.out.println("Congrats! You've found a health potion!");
+					player.addLoot('H');
+				}
+				else {
+					System.out.println("Congrats! You've found a vision potion!");
+					player.addLoot('V');
+				}				
+			}
+		}
 	}
 	
 	public static void battle(Hero theHero, Monster theMonster)

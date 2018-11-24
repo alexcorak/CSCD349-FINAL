@@ -1,5 +1,7 @@
 package heroesAndMonsters;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -36,8 +38,8 @@ public abstract class Hero extends DungeonCharacter
 	private int numTurns;
 	private int[] location;
 	private ArrayList<Integer> pillars;
-	private ArrayList<Character> lootList;
-	//private int hitPoints;
+	private HashMap<Character, Integer> lootList;
+	
 
 //-----------------------------------------------------------------
 //calls base constructor and gets name of hero from user
@@ -51,7 +53,7 @@ public abstract class Hero extends DungeonCharacter
 	
 	
 	pillars = new ArrayList<>();
-	lootList = new ArrayList<>();
+	lootList = new HashMap<>();
 	this.location = new int[2];
 	location[0] = 0;
 	location[1] = 0;
@@ -62,6 +64,83 @@ public abstract class Hero extends DungeonCharacter
 	public int pillarsFound()
 	{
 		return pillars.size();
+	}
+	
+	public void showLoot()
+	{
+		for (Character c : lootList.keySet())
+		{
+			if (c == 'V')
+			{
+				System.out.print("Vision Potions left: ");
+				System.out.println(lootList.get(c));
+			}
+			else if (c == 'H')
+			{
+				System.out.print("Health Potions left: ");
+				System.out.println(lootList.get(c));
+			}
+		}
+	}
+	
+	public void accessLoot()
+	{
+		Scanner sc = new Scanner(System.in);
+		int choice = 0;
+		
+		if (lootList.containsKey('H') || lootList.containsKey('V'))
+		{
+		
+			do {
+			
+			System.out.println("1) Use Vision Potion");
+			System.out.println("2) Use Health Potion");
+			System.out.println("3) Back to main menu");
+			choice = sc.nextInt();
+			
+			switch(choice)
+			{
+				case 1:
+				{
+					if (lootList.containsKey('V'))
+					{
+						
+						lootList.put('V', lootList.get('V') - 1);
+						if (lootList.get('V') == 0)
+							lootList.remove('V');
+					}
+				}
+				break;
+				
+				case 2:
+				{
+					if (lootList.containsKey('H'))
+					{
+						Random rand = new Random();
+						super.addHitPoints(rand.nextInt(11) + 5);
+						System.out.println("You now have: " + super.getHitPoints() + " hitpoints");
+						lootList.put('H', lootList.get('H') - 1);
+						if (lootList.get('H') == 0)
+							lootList.remove('H');
+					}
+				}
+				break;
+				
+				case 3:
+					break;
+			}
+			
+			}while (choice < 1 || choice > 3);
+		}
+		
+	}
+	
+	public void addLoot(char c)
+	{
+		if (lootList.containsKey(c))
+			lootList.put(c, lootList.get(c) + 1);
+		else
+			lootList.put(c, 1);
 	}
 	
 	public void addPillar()

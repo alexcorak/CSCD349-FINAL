@@ -28,7 +28,8 @@ public class DungeonAdventure
 		Dungeon dun = new Dungeon(player);
 		
 		StringBuilder map = saveDungeon(dun);
-		int choice = 0;
+		String s = map.toString();
+		
 		
 		System.out.println("Welcome to the dungeon!\n");
 		
@@ -55,14 +56,20 @@ public class DungeonAdventure
 				}
 				
 			}
-			else if(menuOption == 2)
-				System.out.println("unsupported");
+			else if(menuOption == 2) {
+				player.showLoot();
+				player.accessLoot();
+			}
+				
 			else if (menuOption == 3)
 				System.out.println("Save game...");
-			else if (menuOption == 4)
-				printWholeDungeon(map);
+			else if (menuOption == 4){
+				StringBuilder str = new StringBuilder(s);
+				printWholeDungeon(str);
+			
+			}
 			else	
-				System.exit(0);
+				break;
 			
 			
 			//dun.printRoom();
@@ -86,7 +93,7 @@ public class DungeonAdventure
 			System.out.println("2) Access Inventory");
 			System.out.println("3) Save game");
 			System.out.println("5) Quit");
-			System.out.println("Any number to ");
+			
 			choice = sc.nextInt();
 			
 		}while (choice < 0 || choice > 5);
