@@ -1,9 +1,10 @@
 package heroesAndMonsters;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Room
+public class Room implements Serializable
 {
 	private char[] room;
 	private boolean north = true;

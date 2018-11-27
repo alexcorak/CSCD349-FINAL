@@ -1,6 +1,7 @@
 
 package heroesAndMonsters;
 
+import java.io.Serializable;
 
 /**
  * Title: DungeonCharacter.java
@@ -35,7 +36,7 @@ package heroesAndMonsters;
  * @version 1.0
  */
 
-public abstract class DungeonCharacter
+public abstract class DungeonCharacter implements Serializable
 {
 
 	private String name;

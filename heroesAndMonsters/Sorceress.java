@@ -24,6 +24,11 @@ public class Sorceress extends Hero
 
 
     }//end constructor
+    
+    public Sorceress(Hero a)
+    {
+    	super("Sorceress", 75, 5, .7, 25, 50, .3);
+    }
 
 //-----------------------------------------------------------------
 	public void increaseHitPoints()

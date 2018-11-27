@@ -1,4 +1,6 @@
 package heroesAndMonsters;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -32,7 +34,7 @@ import java.util.Scanner;
  */
 
 
-public abstract class Hero extends DungeonCharacter
+public abstract class Hero extends DungeonCharacter 
 {
 	private double chanceToBlock;
 	private int numTurns;
@@ -61,6 +63,13 @@ public abstract class Hero extends DungeonCharacter
 
 //------------------------------------------------------------------  
 
+  @Override
+  public String toString()
+  {
+	  return "Name: "+this.getName() + " Current HP: "+ this.getHitPoints() + bagString();
+  }
+  
+  
 	public int pillarsFound()
 	{
 		return pillars.size();
@@ -81,6 +90,28 @@ public abstract class Hero extends DungeonCharacter
 				System.out.println(lootList.get(c));
 			}
 		}
+	}
+	
+	public String bagString() //toString helper method
+	{
+		String inventory = " ";
+		for (Character c : lootList.keySet())
+		{
+			if (c == 'V')
+			{
+				inventory += " Vision Potions left: ";
+				inventory += lootList.get(c).toString();
+			}
+			else if (c == 'H')
+			{
+				inventory += " Health Potions left: ";
+				inventory += lootList.get(c).toString();
+			}
+		}
+		
+		inventory += " Pillars of OO found: " + pillars.size();
+		
+		return inventory;
 	}
 	
 	public boolean accessLoot()

@@ -1,9 +1,10 @@
 package heroesAndMonsters;
 
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Dungeon 
+public class Dungeon implements Serializable
 {
 	private Room[][] dungeon = new Room[5][5];
 	private Hero player;
