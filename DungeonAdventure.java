@@ -15,7 +15,8 @@ public class DungeonAdventure
 		String s = map.toString();
 		boolean useVision = false;
 		
-		System.out.println("Welcome to the dungeon!\n");
+		printDungeon(dun);
+		System.out.println("");
 		
 		while (true)
 		{
@@ -44,6 +45,8 @@ public class DungeonAdventure
 					if ((dun.atExit() == true) && (player.pillarsFound() == 4))
 					{
 						System.out.println("Congrats, you've won!");
+						StringBuilder str = new StringBuilder(s);
+						printWholeDungeon(str);
 						System.exit(0);
 					}
 					useVision = false;
@@ -82,6 +85,30 @@ public class DungeonAdventure
 		}
 		
 		
+	}
+	
+	public static void welcome() 
+	{
+		System.out.println("Welcome to the Dungeon Adventure!");
+		System.out.println("The Dungeon is a 25 room labyrinth filled with pitfalls, treasures, monsters, and more!");
+		System.out.println("The map is revealed as you trek through its halls, with the following symbols for a legend:");
+		System.out.println("@ - Your current position");
+		System.out.println("# - A room you've already visited");
+		System.out.println("P - A pit your hero may fall into");
+		System.out.println("I - The entrance to the dungeon, and where your adventure begins");
+		System.out.println("O - The exit to the dungeon, you cannot leave until you've found the pillars");
+		System.out.println("M - A multiple item room; may have potions, a pit, or both!");
+		System.out.println("X - An evil monster inhabits this room");
+		System.out.println("R - A pillar is in this room, the goal of your quest is to gather all 4 Pillars of OO");
+		
+		Scanner in = new Scanner(System.in);
+		System.out.println("Enter anything to continue: ");
+		String enter = "";
+		enter = in.nextLine();
+		while(enter == "")
+		{
+			enter = in.nextLine();
+		}
 	}
 	
 	public static heroOriginator loadGame() 
