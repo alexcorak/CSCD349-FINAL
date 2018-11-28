@@ -12,7 +12,7 @@ public class DungeonAdventure
 		Dungeon dun = new Dungeon(player);
 		
 		StringBuilder map = saveDungeon(dun);
-		String s = map.toString(); //is this used?
+		String s = map.toString();
 		boolean useVision = false;
 		
 		System.out.println("Welcome to the dungeon!\n");

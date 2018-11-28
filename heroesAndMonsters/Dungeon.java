@@ -23,8 +23,10 @@ public class Dungeon implements Serializable
 					dungeon[row][col] = new Room(row, col, dungeon.length, ' ');
 			}
 		}
+		
 		setPillars();
 		setEntranceExit();
+		
 	}
 	
 	public Hero getPlayer()
@@ -125,8 +127,23 @@ public class Dungeon implements Serializable
 	
 	public void setEntranceExit()
 	{
-		dungeon[0][0].setContents("I");
+		Random rand = new Random();
+		int[] location = new int[2];
+		location[0] = rand.nextInt(5);
+		location[1] = rand.nextInt(5);
+		
+		if (dungeon[location[0]][location[1]].getContents() == 'R') {
+			dungeon[0][0].setContents("I");		
+		}
+		else {
+			dungeon[location[0]][location[1]].setContents("I");
+			player.setLocation(location);
+		}
+		
 		dungeon[4][4].setContents("O");
+		
+		
+	
 	}
 	
 	public void setPillars()
@@ -219,6 +236,13 @@ public class Dungeon implements Serializable
 					System.out.println("Congrats! You've found a vision potion!");
 					player.addLoot('V');
 				}				
+			}
+			
+			if (Math.random() <= .90)
+			{
+				System.out.println("\nOh no! You've fallen in a pit and lost 25 hitpoints");
+				System.out.println("But you've also found a plank of wood to cover the pit in the mess of random items");
+				player.subtractHP(25);								
 			}
 		}
 	}
