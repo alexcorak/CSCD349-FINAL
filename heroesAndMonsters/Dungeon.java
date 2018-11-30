@@ -135,6 +135,10 @@ public class Dungeon implements Serializable
 		if (dungeon[location[0]][location[1]].getContents() == 'R') {
 			dungeon[0][0].setContents("I");		
 		}
+		else if (location[0] == 4 && location[1] == 4) {
+			dungeon[0][0].setContents("I");
+			player.setLocation(new int[] {0,0});
+		}
 		else {
 			dungeon[location[0]][location[1]].setContents("I");
 			player.setLocation(location);
@@ -253,6 +257,10 @@ public class Dungeon implements Serializable
 		Scanner input = new Scanner(System.in);
 		char quit = 'p';
 		
+		FlyweightAttack that = new FlyweightAttack();
+    	Attack atk;
+		
+		
 		System.out.println(theHero.getName() + " battles " +
 							theMonster.getName());
 		System.out.println("---------------------------------------------");
@@ -262,10 +270,18 @@ public class Dungeon implements Serializable
 			theHero.battleChoices(theMonster);
 			
 			if (theMonster.isAlive())
-			    theMonster.attack(theHero);
+			{
+				atk = that.getAttack("Attack");
+	    		atk.attack(theMonster, theHero);
+			}
 			
 			System.out.print("\n-->q to quit, anything else to continue: ");
-			quit = input.nextLine().charAt(0);
+			String quitOrNot = input.nextLine();
+			
+			if (quitOrNot.length() > 0)
+				quit = quitOrNot.charAt(0);
+			else
+				quit = ' ';
 
 		}
 
@@ -285,7 +301,6 @@ public class Dungeon implements Serializable
 		else
 			System.out.println("Quitters never win ;-)");
 		
-		
 
 	}
 	
@@ -294,12 +309,12 @@ public class Dungeon implements Serializable
 		int choice;
 		boolean buffer = false;
 		MonsterFactory factory = new MonsterFactory();
-		choice = (int)(Math.random() * 3) + 1;
+		choice = (int)(Math.random() * 5) + 1;
 		if(choice == 5 && buffer == false)
 		{
 			if(Math.random() <=.5) 
 			{
-				choice = (int)(Math.random() * 3) + 1;
+				choice = (int)(Math.random() * 5) + 1;
 				buffer = true;
 			}
 		}

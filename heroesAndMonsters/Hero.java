@@ -61,7 +61,8 @@ public abstract class Hero extends DungeonCharacter
   }
 
 //------------------------------------------------------------------  
-
+  public abstract String getPhrase();
+  
   @Override
   public String toString()
   {

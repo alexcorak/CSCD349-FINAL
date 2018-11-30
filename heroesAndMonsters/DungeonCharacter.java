@@ -94,8 +94,21 @@ public abstract class DungeonCharacter implements Serializable
 		return attackSpeed;
 	}//end getAttackSpeed
 
+	public double getChanceToHit()
+	{
+		return this.chanceToHit;
+	}
+	
+	
+	public int getDamageMin() {
+		return damageMin;
+	}
 
-/*-------------------------------------------------------
+	public int getDamageMax() {
+		return damageMax;
+	}
+
+	/*-------------------------------------------------------
 addHitPoints is used to increment the hitpoints a dungeon character has
 
 Receives: number of hit points to add
@@ -214,6 +227,7 @@ hero classes and externally
 
 //-----------------------------------------------------------------
 
+	public abstract String getPhrase();
 
 
 }//end class Character

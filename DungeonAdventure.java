@@ -8,12 +8,14 @@ public class DungeonAdventure
 	
 	public static void main(String[] args)
 	{
+		welcome();
 		Hero player = chooseHero();
 		Dungeon dun = new Dungeon(player);
 		
 		StringBuilder map = saveDungeon(dun);
 		String s = map.toString();
 		boolean useVision = false;
+		
 		
 		printDungeon(dun);
 		System.out.println("");
@@ -36,7 +38,7 @@ public class DungeonAdventure
 						dun.resetVision();
 					}
 					else						
-						printDungeon(dun);
+						//printDungeon(dun);
 					
 					dun.lootRoom();
 					dun.resetRoom();
@@ -49,7 +51,10 @@ public class DungeonAdventure
 						printWholeDungeon(str);
 						System.exit(0);
 					}
+					if (!useVision)
+						printDungeon(dun);
 					useVision = false;
+					
 					option = moveHero(dun);
 					
 				}

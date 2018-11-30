@@ -70,12 +70,14 @@ public abstract class Monster extends DungeonCharacter
  
  public abstract double getDropChance();
  
- public void attack(DungeonCharacter opponent)
+ 
+ 
+/* public void attack(DungeonCharacter opponent)
  {
 	 System.out.println(getName() + this.getPhrase() +
 				opponent.getName() + ":");
 	 super.attack(opponent);
- }
+ }*/
 
  public abstract String getPhrase();
 

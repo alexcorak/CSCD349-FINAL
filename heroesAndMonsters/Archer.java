@@ -4,44 +4,20 @@ import java.util.Scanner;
 
 public class Archer extends Hero
 {
-	private int specialArrow;
+	private String phrase;
+	
 	public Archer()
 	{		
 		super("Archer", 110,5,.9,15,50,.2); //more hp than thief,same speed as mage, more accurate, big damage range, cant block well
-		this.specialArrow = 5;
+		
+		this.phrase = " shoots an arrow at ";
 	}
-	
-	
-	public void flamingArrow(DungeonCharacter opponent)
-	{
-		if(Math.random()>= .3)//70% chance to hit
-		{
-			if(this.specialArrow!=0)
-			{
-				System.out.println();
-				System.out.println(getName() + " lands an FLAMING ARROW for half of " + opponent.getName() + "'s health!");
-				float half = opponent.getHitPoints()/3;
-				int damage = Math.round(half);
-				opponent.subtractHitPoints(damage);
-			}
-		}
-		else
-		{
-			System.out.println("The flaming arrow misses!");
-		}
-		this.specialArrow--;
-		System.out.println("You have "+this.specialArrow+ " arrows remaining.");
-	}
-	
-	public void attack(DungeonCharacter opponent)
-	{
-		System.out.println(getName() + " shoots an arrow at " +
-							opponent.getName() + ":");
-		super.attack(opponent);
-	}//end override of attack method
 	
     public void battleChoices(DungeonCharacter opponent)
 	{
+    	FlyweightAttack that = new FlyweightAttack();
+    	Attack atk;
+    	
     	Scanner input = new Scanner(System.in);
 		int choice;
 
@@ -58,9 +34,11 @@ public class Archer extends Hero
 
 		    switch (choice)
 		    {
-			    case 1: attack(opponent);
+			    case 1: atk = that.getAttack("Attack");
+	    				atk.attack(this, opponent);
 			        break;
-			    case 2: flamingArrow(opponent);
+			    case 2: atk = that.getAttack("ArcherAttack");
+	    				atk.attack(this, opponent);
 			        break;
 			    default:
 			        System.out.println("invalid choice!");
@@ -73,6 +51,13 @@ public class Archer extends Hero
 		} while(getNumTurns() > 0);
 
     }//end battleChoices method
+
+
+	@Override
+	public String getPhrase() {
+		// TODO Auto-generated method stub
+		return this.phrase;
+	}
 	
 	
 }

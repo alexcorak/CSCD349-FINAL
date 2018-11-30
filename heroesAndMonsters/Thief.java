@@ -12,40 +12,23 @@ import java.util.Scanner;
 
 public class Thief extends Hero
 {
-
+	
+	
+	private String phrase;
     public Thief()
 	{
 		super("Thief", 75, 6, .8, 20, 40, .5);
-
+		this.phrase = " Slashes a dagger at ";
 
 
     }//end constructor
 
-	public void surpriseAttack(DungeonCharacter opponent)
-	{
-		double surprise = Math.random();
-		if (surprise <= .4)
-		{
-			
-			System.out.println("Surprise attack was successful!\n" +
-					getName() + " gets an additional turn.");
-			setNumTurns(getNumTurns() + 1);
-			attack(opponent);
-		}//end surprise
-		else if (surprise >= .9)
-		{
-			System.out.println("Uh oh! " + opponent.getName() + " saw you and" +
-								" blocked your attack!");
-		}
-		else
-		    attack(opponent);
-
-
-	}//end surpriseAttack method
-
 
     public void battleChoices(DungeonCharacter opponent)
 	{
+    	FlyweightAttack that = new FlyweightAttack();
+    	Attack atk;
+    	
     	Scanner input = new Scanner(System.in);
 		super.battleChoices(opponent);
 		int choice;
@@ -61,9 +44,11 @@ public class Thief extends Hero
 
 		    switch (choice)
 		    {
-			    case 1: attack(opponent);
+			    case 1: atk = that.getAttack("Attack");
+	    				atk.attack(this, opponent);
 			        break;
-			    case 2: surpriseAttack(opponent);
+			    case 2: atk = that.getAttack("ThiefAttack");
+	    				atk.attack(this, opponent);
 			        break;
 			    default:
 			        System.out.println("invalid choice!");
@@ -76,4 +61,9 @@ public class Thief extends Hero
 		} while(getNumTurns() > 0);
 
     }
+
+	@Override
+	public String getPhrase() {
+		return this.phrase;
+	}
 }
