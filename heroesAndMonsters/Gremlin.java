@@ -32,8 +32,4 @@ public class Gremlin extends Monster
     {
     	return dropChance;
     }
-
-	
-
-
 }//end class Gremlin

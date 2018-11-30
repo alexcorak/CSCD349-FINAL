@@ -17,7 +17,7 @@ public abstract class Monster extends DungeonCharacter
 	private int minHeal, maxHeal;
 
 //-----------------------------------------------------------------
-  Monster(String name, int hitPoints, int attackSpeed,
+ public Monster(String name, int hitPoints, int attackSpeed,
 				     double chanceToHit, double chanceToHeal,
 					 int damageMin, int damageMax,
 					 int minHeal, int maxHeal)
@@ -32,6 +32,10 @@ public abstract class Monster extends DungeonCharacter
 
 
 //-----------------------------------------------------------------
+  public abstract double getDropChance();
+  
+  public abstract String getPhrase();
+  
   public void heal()
   {
 	boolean canHeal;
@@ -68,17 +72,6 @@ public abstract class Monster extends DungeonCharacter
  		return false;
  }
  
- public abstract double getDropChance();
- 
- 
- 
-/* public void attack(DungeonCharacter opponent)
- {
-	 System.out.println(getName() + this.getPhrase() +
-				opponent.getName() + ":");
-	 super.attack(opponent);
- }*/
 
- public abstract String getPhrase();
 
 }//end Monster class

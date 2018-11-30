@@ -9,7 +9,6 @@ public class AnAttack implements Attack
 		 System.out.println(attacker.getName() + attacker.getPhrase() +
 					opponent.getName() + ":");
 		 
-		// super.attack(opponent);
 		 
 		 boolean canAttack;
 			int damage;

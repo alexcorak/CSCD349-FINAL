@@ -8,7 +8,7 @@ public class Dragon extends Monster
 	
 	public Dragon()
 	{
-		super("The Grey Dragon", 220,4, .7,.25,35,55,30,50);
+		super("The Grey Dragon", 220,4, .7,.225,35,55,30,50);
 		this.dropChance = 1.0;
 		this.phrase = " breathes superheated blue flame at ";
 	}

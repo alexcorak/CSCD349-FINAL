@@ -10,8 +10,7 @@ public class heroOriginator
 	public void setPlay(Hero player)
 	{
 		this.state = player;
-		System.out.println("Originator: Setting state to " + state.getName());//replace with toString
-		//this.state = state;
+		System.out.println("Originator: Setting state to " + state.getName());
 	}
 	
 	public void setMap(Dungeon dun)

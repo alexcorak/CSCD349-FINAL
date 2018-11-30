@@ -96,7 +96,7 @@ public class Room implements Serializable
 	{
 		double random = Math.random();
 		
-		if (random <= .5) // 20% chance the room isnt empty
+		if (random <= .5) // 50% chance the room isnt empty
 		{
 			Random rand = new Random();
 			int randomItem = rand.nextInt(itemList.size());

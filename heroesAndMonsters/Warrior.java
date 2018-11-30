@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 
 
-public class Warrior extends Hero implements Attack
+public class Warrior extends Hero
 {
 	private String phrase;
 	
@@ -65,15 +65,8 @@ public class Warrior extends Hero implements Attack
 
 	@Override
 	public String getPhrase() {
-		
 		return this.phrase;
 	}
 
-	
-	
-	@Override
-	public void attack(DungeonCharacter attacker, DungeonCharacter opponent) {
-		
-	}
 
 }//end Hero class

@@ -7,8 +7,9 @@ public class Archer extends Hero
 	private String phrase;
 	
 	public Archer()
-	{		
-		super("Archer", 110,5,.9,15,50,.2); //more hp than thief,same speed as mage, more accurate, big damage range, cant block well
+	{
+		
+		super("Archer", 110,5,.9,15,50,.2);
 		
 		this.phrase = " shoots an arrow at ";
 	}
@@ -55,7 +56,6 @@ public class Archer extends Hero
 
 	@Override
 	public String getPhrase() {
-		// TODO Auto-generated method stub
 		return this.phrase;
 	}
 	

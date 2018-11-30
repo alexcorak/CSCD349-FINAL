@@ -6,7 +6,7 @@ import heroesAndMonsters.*;
 public class DungeonAdventure
 {
 	
-	public static void main(String[] args)
+	public static void main(String[] args) // menu option 4 prints the complete dungeon with room contents displayed
 	{
 		welcome();
 		Hero player = chooseHero();
@@ -37,8 +37,6 @@ public class DungeonAdventure
 						printDungeon(dun);
 						dun.resetVision();
 					}
-					else						
-						//printDungeon(dun);
 					
 					dun.lootRoom();
 					dun.resetRoom();
@@ -56,9 +54,7 @@ public class DungeonAdventure
 					useVision = false;
 					
 					option = moveHero(dun);
-					
 				}
-				
 			}
 			else if(menuOption == 2) {
 				player.showLoot();
@@ -75,8 +71,11 @@ public class DungeonAdventure
 			else if(menuOption == 6)
 			{
 				heroOriginator origin = loadGame();
+				if(origin!=null) 
+				{
 				player = origin.getPlayerState();
 				dun = origin.getMapState();
+				}
 				
 				System.out.println(player.toString());
 				printDungeon(dun);
@@ -118,7 +117,11 @@ public class DungeonAdventure
 	
 	public static heroOriginator loadGame() 
 	{
-		String filename = "Save1.ser";
+		String filename = ".ser";
+		Scanner kb = new Scanner(System.in);
+		System.out.println("Enter a filename: ");
+		filename = kb.nextLine()+filename;
+		
 		heroOriginator origin = new heroOriginator();
 		try 
 		{
@@ -126,20 +129,21 @@ public class DungeonAdventure
 		ObjectInputStream in = new ObjectInputStream(file);
 		
 		LinkedList<heroOriginator.heroMemento> list = new LinkedList<heroOriginator.heroMemento>();
-		list = (LinkedList<heroOriginator.heroMemento>) in.readObject(); //this is a problem, replace with two save files??
+		list = (LinkedList<heroOriginator.heroMemento>) in.readObject(); 
 		origin.restoreFromMemento(list.peek());
 		}
 		catch (FileNotFoundException e) 
 		{
-			e.printStackTrace();
+			System.out.println("File Not Found. Please check the filename, and do not include the extension.");
+			return null;
 		} 
 		catch (IOException e) 
 		{
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return origin;
 		
 		
@@ -152,19 +156,23 @@ public class DungeonAdventure
 		origin1.setMap(dun);
 		origin1.setPlay(player);
 		list.add(origin1.saveToMemento());
-		String filename = "Save1.ser";
+		
+		String filename = ".ser";
+		Scanner kb = new Scanner(System.in);
+		System.out.println("Enter a filename: ");
+		filename = kb.nextLine()+filename;
+		
 		try {
 			FileOutputStream file = new FileOutputStream(filename);
 			ObjectOutputStream out = new ObjectOutputStream(file);
 			out.writeObject(list);
-			file.close();
-			out.close();
 			System.out.println("Hero has been saved");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	public static int menu()
@@ -268,7 +276,7 @@ public class DungeonAdventure
 						   "4. Archer\n"+
 						   "5. Berserker\n");
 		choice = input.nextInt();
-		
+
 		return factory.createHero(choice);
 					
 		

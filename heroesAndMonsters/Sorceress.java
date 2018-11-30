@@ -72,7 +72,6 @@ public class Sorceress extends Hero
 
 	@Override
 	public String getPhrase() {
-		// TODO Auto-generated method stub
 		return this.phrase;
 	}
 
