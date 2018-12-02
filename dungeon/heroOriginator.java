@@ -1,4 +1,4 @@
-package heroesAndMonsters;
+package dungeon;
 
 import java.io.Serializable;
 import java.util.LinkedList;

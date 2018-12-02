@@ -1,33 +1,21 @@
-package heroesAndMonsters;
+package dungeon;
+
 import java.util.Scanner;
 
-/**
- * Title:
- * Description:
- * Copyright:    Copyright (c) 2001
- * Company:
- * @author
- * @version 1.0
- */
-
-
-
-
-public class Warrior extends Hero
+public class Berserker extends Hero
 {
 	private String phrase;
-	
-    public Warrior()
+	public Berserker() 
 	{
-		super("Warrior", 135, 4, .8, 35, 60, .2);
-		this.phrase = " swings a mighty sword at ";
-    }//end constructor
-
-    public void battleChoices(DungeonCharacter opponent)
-	{
-    	FlyweightAttack that = new FlyweightAttack();
-    	Attack atk;
+		super("Berserker", 120, 4, .75, 30, 55, .4);
+		this.phrase = " swings a great axe at ";
+	}
 		
+	public void battleChoices(DungeonCharacter opponent)
+	{
+		FlyweightAttack that = new FlyweightAttack();
+    	Attack atk;
+    	
     	Scanner input = new Scanner(System.in);
 		int choice;
 
@@ -36,7 +24,7 @@ public class Warrior extends Hero
 		do
 		{
 		    System.out.println("1. Attack Opponent");
-		    System.out.println("2. Crushing Blow on Opponent");
+		    System.out.println("2. Unleash your Berserker Rage! (requires 50 hp or less remaining)");
 		    System.out.print("Choose an option: ");
 		    choice = input.nextInt();
 		    input.nextLine();
@@ -45,10 +33,11 @@ public class Warrior extends Hero
 		    switch (choice)
 		    {
 			    case 1: atk = that.getAttack("Attack");
-			    		atk.attack(this, opponent);
+	    				atk.attack(this, opponent);
 			        break;
-			    case 2: atk = that.getAttack("WarriorAttack");
-			    		atk.attack(this, opponent);
+			    case 2: atk = that.getAttack("BerserkerAttack");
+	    				atk.attack(this, opponent);
+	    				    					    				
 			        break;
 			    default:
 			        System.out.println("invalid choice!");
@@ -59,14 +48,12 @@ public class Warrior extends Hero
 			    System.out.println("Number of turns remaining is: " + getNumTurns());
 
 		} while(getNumTurns() > 0);
-
-    }//end battleChoices method
-
+	}
 
 	@Override
 	public String getPhrase() {
 		return this.phrase;
 	}
+	
 
-
-}//end Hero class
+}

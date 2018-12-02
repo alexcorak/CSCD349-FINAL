@@ -1,4 +1,4 @@
-package heroesAndMonsters;
+package dungeon;
 
 public class HeroFactory
 {

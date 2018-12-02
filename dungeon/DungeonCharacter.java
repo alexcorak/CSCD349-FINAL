@@ -1,5 +1,5 @@
 
-package heroesAndMonsters;
+package dungeon;
 
 import java.io.Serializable;
 
@@ -197,7 +197,7 @@ This method calls: Math.random(), subtractHitPoints()
 This method is called by: overridden versions of the method in monster and
 hero classes and externally
 ---------------------------------------------------------*/
-	public void attack(DungeonCharacter opponent)
+	/*public void attack(DungeonCharacter opponent)
 	{
 				
 		boolean canAttack;
@@ -223,7 +223,7 @@ hero classes and externally
 			System.out.println();
 		}//end else
 
-	}//end attack method
+	}//end attack method*/
 
 //-----------------------------------------------------------------
 

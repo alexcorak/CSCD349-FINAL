@@ -1,19 +1,22 @@
-package heroesAndMonsters;
+package dungeon;
 
 import java.util.Scanner;
 
-public class Berserker extends Hero
+public class Archer extends Hero
 {
 	private String phrase;
-	public Berserker() 
+	
+	public Archer()
 	{
-		super("Berserker", 120, 4, .75, 30, 55, .4);
-		this.phrase = " swings a great axe at ";
-	}
 		
-	public void battleChoices(DungeonCharacter opponent)
+		super("Archer", 110,5,.9,15,50,.2);
+		
+		this.phrase = " shoots an arrow at ";
+	}
+	
+    public void battleChoices(DungeonCharacter opponent)
 	{
-		FlyweightAttack that = new FlyweightAttack();
+    	FlyweightAttack that = new FlyweightAttack();
     	Attack atk;
     	
     	Scanner input = new Scanner(System.in);
@@ -24,7 +27,7 @@ public class Berserker extends Hero
 		do
 		{
 		    System.out.println("1. Attack Opponent");
-		    System.out.println("2. Unleash your Berserker Rage! (requires 50 hp or less remaining)");
+		    System.out.println("2. Flaming Arrow on Opponent");
 		    System.out.print("Choose an option: ");
 		    choice = input.nextInt();
 		    input.nextLine();
@@ -35,9 +38,8 @@ public class Berserker extends Hero
 			    case 1: atk = that.getAttack("Attack");
 	    				atk.attack(this, opponent);
 			        break;
-			    case 2: atk = that.getAttack("BerserkerAttack");
+			    case 2: atk = that.getAttack("ArcherAttack");
 	    				atk.attack(this, opponent);
-	    				    					    				
 			        break;
 			    default:
 			        System.out.println("invalid choice!");
@@ -48,12 +50,14 @@ public class Berserker extends Hero
 			    System.out.println("Number of turns remaining is: " + getNumTurns());
 
 		} while(getNumTurns() > 0);
-	}
+
+    }//end battleChoices method
+
 
 	@Override
 	public String getPhrase() {
 		return this.phrase;
 	}
 	
-
+	
 }

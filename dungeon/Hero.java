@@ -1,4 +1,4 @@
-package heroesAndMonsters;
+package dungeon;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,7 +1,9 @@
+package dungeon;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.Scanner;
-import heroesAndMonsters.*;
+
+import dungeon.*;
 
 public class DungeonAdventure
 {

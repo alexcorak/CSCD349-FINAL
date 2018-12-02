@@ -1,4 +1,4 @@
-package heroesAndMonsters;
+package dungeon;
 
 
 /**
@@ -10,18 +10,18 @@ package heroesAndMonsters;
  * @version 1.0
  */
 
-public class Ogre extends Monster
+public class Gremlin extends Monster
 {
 	private String phrase;
 	private double dropChance;
-
-    public Ogre()
+	
+    public Gremlin()
 	{
-		super("Oscar the Ogre", 200, 2, .6, .1, 30, 50, 30, 50);
-		this.phrase = " slowly swings a club toward's ";
-		this.dropChance = .5;
-
+		super("Gnarltooth the Gremlin", 70, 5, .8, .4, 15, 30, 20, 40);
+		this.phrase = " jabs his kris at ";
+		this.dropChance = .3;
     }//end constructor
+
 
     public String getPhrase()
 	{
@@ -30,8 +30,6 @@ public class Ogre extends Monster
     
     public double getDropChance()
     {
-    	return this.dropChance;
+    	return dropChance;
     }
-
-
-}//end Monster class
+}//end class Gremlin

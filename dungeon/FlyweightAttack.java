@@ -1,4 +1,4 @@
-package heroesAndMonsters;
+package dungeon;
 
 import java.util.HashMap;
 
@@ -37,7 +37,7 @@ public class FlyweightAttack
 				atk = new ThiefAttack();
 				pool.put(key, atk);
 			}
-			else if (key == "Attack")
+			else //(key == "Attack")
 			{
 				atk = new AnAttack();
 				pool.put(key, atk);

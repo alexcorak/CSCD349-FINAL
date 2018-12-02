@@ -1,4 +1,4 @@
-package heroesAndMonsters;
+package dungeon;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -129,12 +129,9 @@ public class Room implements Serializable
 	}
 	
 	public char youAreHere()
-	{
-			
-		
+	{				
 		room[8] = '@';
-	
-		
+			
 		this.visited = true;
 		return this.contents2[0];
 	}
@@ -153,10 +150,7 @@ public class Room implements Serializable
 			room[8] = '#';
 			this.contents2[0] = '#';
 		}
-		
-		
-		
-		
+				
 	}
 	
 	public void setVision(boolean yesNo)

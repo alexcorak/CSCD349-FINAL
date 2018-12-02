@@ -1,4 +1,4 @@
-package heroesAndMonsters;
+package dungeon;
 
 import java.io.Serializable;
 import java.util.Random;
@@ -208,8 +208,7 @@ public class Dungeon implements Serializable
 		{
 			System.out.println("\nPrepare for battle!");
 			Monster theMonster = generateMonster();
-			battle(player, theMonster);
-			
+			battle(player, theMonster);			
 		}
 		
 		if (dungeon[player.getLocation()[0]][player.getLocation()[1]].getContents() == 'H')
