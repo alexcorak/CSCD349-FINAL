@@ -139,6 +139,10 @@ public abstract class Hero extends DungeonCharacter
 			
 			}while (choice < 1 || choice > 3);
 		}
+		else
+		{
+			System.out.println("Inventory is empty. ");
+		}
 		
 		return false;
 		

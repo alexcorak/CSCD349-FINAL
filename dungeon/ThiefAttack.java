@@ -6,7 +6,7 @@ public class ThiefAttack implements Attack
 	@Override
 	public void attack(DungeonCharacter attacker, DungeonCharacter opponent)
 	{
-		FlyweightAttack that = new FlyweightAttack();
+		FlyweightAttack that = FlyweightAttack.getInstance();
     	Attack atk = new AnAttack();
     	
 		double surprise = Math.random();

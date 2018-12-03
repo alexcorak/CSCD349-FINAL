@@ -34,7 +34,7 @@ public class Sorceress extends Hero
 
     public void battleChoices(DungeonCharacter opponent)
 	{
-    	FlyweightAttack that = new FlyweightAttack();
+    	FlyweightAttack that = FlyweightAttack.getInstance();
     	Attack atk;
     	
     	Scanner input = new Scanner(System.in);

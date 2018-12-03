@@ -42,7 +42,7 @@ public class Dungeon implements Serializable
 	public StringBuilder toStringDungeon()
 	{
 		StringBuilder str = new StringBuilder();
-
+		
 		for (int i = 0; i < dungeon.length; i++) //ROWS
 		{
 			StringBuilder one = new StringBuilder();
@@ -164,7 +164,6 @@ public class Dungeon implements Serializable
 		currentRoom[0] = player.getLocation()[0];
 		currentRoom[1] = player.getLocation()[1];
 		currentRoom[2] = dungeon[player.getLocation()[0]][player.getLocation()[1]].youAreHere(); //RETURNS CHARACTER PREVIOUSLY AT THAT LOCATION
-		//lootRoom();
 	}
 	
 	public boolean atExit()
@@ -208,7 +207,9 @@ public class Dungeon implements Serializable
 		{
 			System.out.println("\nPrepare for battle!");
 			Monster theMonster = generateMonster();
-			battle(player, theMonster);			
+			battle(player, theMonster);
+			location();
+			resetRoom();
 		}
 		
 		if (dungeon[player.getLocation()[0]][player.getLocation()[1]].getContents() == 'H')
@@ -241,7 +242,7 @@ public class Dungeon implements Serializable
 				}				
 			}
 			
-			if (Math.random() <= .90)
+			if (Math.random() <= .30)
 			{
 				System.out.println("\nOh no! You've fallen in a pit and lost 25 hitpoints");
 				System.out.println("But you've also found a plank of wood to cover the pit in the mess of random items");
@@ -251,12 +252,12 @@ public class Dungeon implements Serializable
 	}
 	
 	
-	public static void battle(Hero theHero, Monster theMonster)
+	public void battle(Hero theHero, Monster theMonster)
 	{
 		Scanner input = new Scanner(System.in);
 		char quit = 'p';
 		
-		FlyweightAttack that = new FlyweightAttack();
+		FlyweightAttack that = FlyweightAttack.getInstance();
     	Attack atk;
 		
 		
@@ -289,8 +290,9 @@ public class Dungeon implements Serializable
 		    if(theMonster.loot(theMonster))//make them all the same drop rate and delete the param?
 		    {
 		    	System.out.println("You found a potion!");
-		    	//add a potion to the inventory
+		    	theHero.addLoot('H');
 		    }
+		    
 		}
 		else if (!theHero.isAlive()) {
 			System.out.println(theHero.getName() + " was defeated :-(");
@@ -303,7 +305,7 @@ public class Dungeon implements Serializable
 
 	}
 	
-	public static Monster generateMonster()
+	public Monster generateMonster()
 	{
 		int choice;
 		boolean buffer = false;

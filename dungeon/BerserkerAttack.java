@@ -5,7 +5,7 @@ public class BerserkerAttack implements Attack {
 	@Override
 	public void attack(DungeonCharacter attacker, DungeonCharacter opponent)
 	{
-		FlyweightAttack that = new FlyweightAttack();
+		FlyweightAttack that = FlyweightAttack.getInstance();
     	Attack atk;
 		
 		if(attacker.getHitPoints()<=45) //if your health is around 25 percent. buff to 35 hp or 40 if its a hard point to reach without dying

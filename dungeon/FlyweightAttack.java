@@ -4,8 +4,19 @@ import java.util.HashMap;
 
 public class FlyweightAttack
 {
-	
+	private static FlyweightAttack singleton;
 	private HashMap<String, Attack> pool = new HashMap<>();
+	
+	private FlyweightAttack() {}
+	
+	public static FlyweightAttack getInstance()
+	{
+		if (singleton == null)
+			singleton = new FlyweightAttack();
+		
+		return singleton;
+		
+	}
 	
 	public Attack getAttack(String key)
 	{
